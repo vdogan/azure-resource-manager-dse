@@ -17,8 +17,18 @@ echo seed_node_dns_name $seed_node_dns_name
 
 apt-get -y install unzip
 
-wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
-unzip master.zip
-cd install-datastax-ubuntu-master/bin
+#Get install scripts and start OpsC
+cd ~/
+wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
+unzip lcm.zip
+cd install-datastax-ubuntu-lcm/bin
+./os/install_java.sh
+./opscenter/install.sh $cloud_type
+./opscenter/start.sh
 
-./opscenter.sh $cloud_type $seed_node_dns_name
+#Generate lcm ssh key
+cd ~/.ssh/
+ssh-keygen -t rsa -N '' -f lcm.pem
+chown ubuntu:ubuntu lcm.pem*
+chmod 600 lcm.pem*
+echo 'Generated lcm.pem and lcm.pem.pub'
