@@ -24,8 +24,14 @@ echo dse_version $dse_version
 
 apt-get -y install unzip
 
-wget https://github.com/DSPN/install-datastax-ubuntu/archive/master.zip
-unzip master.zip
+wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
+unzip lcm.zip
 cd install-datastax-ubuntu-master/bin/lcm
-
-./dse.sh $cloud_type $seed_node_dns_name $data_center_name $opscenter_dns_name
+./addNode.py \
+--opsc-ip \
+--clustername \
+--dcsize \
+--dcname \
+--pubip $pubip \
+--privip $privip \
+--nodeid $nodeid

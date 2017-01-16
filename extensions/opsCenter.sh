@@ -26,9 +26,11 @@ cd install-datastax-ubuntu-lcm/bin
 ./opscenter/install.sh $cloud_type
 ./opscenter/start.sh
 
-#Generate lcm ssh key
-cd ~/.ssh/
-ssh-keygen -t rsa -N '' -f lcm.pem
-chown ubuntu:ubuntu lcm.pem*
-chmod 600 lcm.pem*
-echo 'Generated lcm.pem and lcm.pem.pub'
+pip install requests
+#pubip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+
+./lcm/setupCluster.py \
+--opsc-ip $pubip \
+--clustername \
+--user \
+--password
