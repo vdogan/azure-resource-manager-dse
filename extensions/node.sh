@@ -1,26 +1,31 @@
 #!/usr/bin/env bash
 
-cloud_type="azure"
-seed_node_location=$1
+data_center_size=$1
 unique_string=$2
 data_center_name=$3
 opscenter_location=$4
 
 echo "Input to node.sh is:"
-echo cloud_type $cloud_type
-echo seed_node_location $seed_node_location
 echo unique_string $unique_string
+echo data_center_name $data_center_name
 echo opscenter_location $opscenter_location
 
-seed_node_dns_name="dc0vm0$unique_string.$seed_node_location.cloudapp.azure.com"
 opscenter_dns_name="opscenter$unique_string.$opscenter_location.cloudapp.azure.com"
+cluster_name="mycluster"
+# data_center_size
+# data_center_name
+public_ip=`curl --retry 10 icanhazip.com`
+private_ip=`echo $(hostname -I)`
+node_id=123
 
-echo "Calling dse.sh with the settings:"
-echo cloud_type $cloud_type
-echo seed_node_dns_name $seed_node_dns_name
-echo data_center_name $data_center_name
+echo "Calling addNode.py with the settings:"
 echo opscenter_dns_name $opscenter_dns_name
-echo dse_version $dse_version
+echo cluster_name $cluster_name
+echo data_center_size $data_center_size
+echo data_center_name $data_center_name
+echo public_ip $public_ip
+echo private_ip $private_ip
+echo node_id $private_ip
 
 apt-get -y install unzip
 
@@ -28,10 +33,10 @@ wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
 cd install-datastax-ubuntu-master/bin/lcm
 ./addNode.py \
---opsc-ip \
---clustername \
---dcsize \
---dcname \
---pubip $pubip \
---privip $privip \
---nodeid $nodeid
+--opsc-ip $opscenter_dns_name\
+--clustername $cluster_name\
+--dcsize $data_center_size\
+--dcname $data_center_name\
+--pubip $public_ip \
+--privip $private_ip \
+--nodeid $node_id

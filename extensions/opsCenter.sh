@@ -1,36 +1,35 @@
 #!/usr/bin/env bash
 
-cloud_type="azure"
-seed_node_location=$1
-unique_string=$2
+username=$1
+password=$2
 
 echo "Input to node.sh is:"
-echo cloud_type $cloud_type
-echo seed_node_location $seed_node_location
-echo unique_string $unique_string
+echo username $username
+echo password $password
 
-seed_node_dns_name="dc0vm0$unique_string.$seed_node_location.cloudapp.azure.com"
+public_ip=`curl --retry 10 icanhazip.com`
+cluster_name="mycluster"
 
-echo "Calling opscenter.sh with the settings:"
-echo cloud_type $cloud_type
-echo seed_node_dns_name $seed_node_dns_name
+echo "Calling setupCluster.py with the settings:"
+echo public_ip $public_ip
+echo cluster_name $cluster_name
+echo username $username
+echo password $password
 
 apt-get -y install unzip
 
-#Get install scripts and start OpsC
-cd ~/
+# Get install scripts and start OpsC
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
 cd install-datastax-ubuntu-lcm/bin
 ./os/install_java.sh
-./opscenter/install.sh $cloud_type
+./opscenter/install.sh
 ./opscenter/start.sh
 
 pip install requests
-#pubip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 
 ./lcm/setupCluster.py \
---opsc-ip $pubip \
---clustername \
---user \
---password
+--opsc-ip $public_ip \
+--clustername $cluster_name\
+--user $username\
+--password $password
