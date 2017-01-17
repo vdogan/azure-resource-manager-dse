@@ -34,7 +34,7 @@ pip install requests
 cd /
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
-cd install-datastax-ubuntu-master/bin/lcm
+cd install-datastax-ubuntu-lcm/bin/lcm
 
 ./addNode.py \
 --opsc-ip $opscenter_dns_name \
