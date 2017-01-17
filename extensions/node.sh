@@ -27,11 +27,13 @@ echo public_ip $public_ip
 echo private_ip $private_ip
 echo node_id $private_ip
 
-apt-get -y install unzip
+apt-get -y install unzip python-pip
+pip install requests
 
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
 cd install-datastax-ubuntu-master/bin/lcm
+
 ./addNode.py \
 --opsc-ip $opscenter_dns_name\
 --clustername $cluster_name\

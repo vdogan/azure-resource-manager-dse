@@ -16,17 +16,16 @@ echo cluster_name $cluster_name
 echo username $username
 echo password $password
 
-apt-get -y install unzip
+apt-get -y install unzip python-pip
+pip install requests
 
-# Get install scripts and start OpsC
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
 cd install-datastax-ubuntu-lcm/bin
+
 ./os/install_java.sh
 ./opscenter/install.sh
 ./opscenter/start.sh
-
-pip install requests
 
 ./lcm/setupCluster.py \
 --opsc-ip $public_ip \
