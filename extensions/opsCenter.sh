@@ -30,6 +30,6 @@ cd install-datastax-ubuntu-lcm/bin
 
 ./lcm/setupCluster.py \
 --opsc-ip $public_ip \
---clustername $cluster_name\
---user $username\
+--clustername $cluster_name \
+--user $username \
 --password $password

@@ -36,10 +36,10 @@ unzip lcm.zip
 cd install-datastax-ubuntu-master/bin/lcm
 
 ./addNode.py \
---opsc-ip $opscenter_dns_name\
---clustername $cluster_name\
---dcsize $data_center_size\
---dcname $data_center_name\
+--opsc-ip $opscenter_dns_name \
+--clustername $cluster_name \
+--dcsize $data_center_size \
+--dcname $data_center_name \
 --pubip $public_ip \
 --privip $private_ip \
 --nodeid $node_id
