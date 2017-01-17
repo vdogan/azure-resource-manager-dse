@@ -16,6 +16,7 @@ echo cluster_name $cluster_name
 echo username $username
 echo password $password
 
+apt-get update
 apt-get -y install unzip python-pip
 pip install requests
 

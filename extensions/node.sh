@@ -27,6 +27,7 @@ echo public_ip $public_ip
 echo private_ip $private_ip
 echo node_id $private_ip
 
+apt-get update
 apt-get -y install unzip python-pip
 pip install requests
 
