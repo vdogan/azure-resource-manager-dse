@@ -31,6 +31,7 @@ apt-get update
 apt-get -y install unzip python-pip
 pip install requests
 
+cd /
 wget https://github.com/DSPN/install-datastax-ubuntu/archive/lcm.zip
 unzip lcm.zip
 cd install-datastax-ubuntu-master/bin/lcm
