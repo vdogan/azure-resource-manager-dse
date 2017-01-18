@@ -81,7 +81,7 @@
       "imageReference": {
         "publisher": "Canonical",
         "offer": "UbuntuServer",
-        "sku": "16.04.1-LTS"
+        "sku": "14.04.5-LTS"
       },
       "scripts": [
         "[concat(variables('extensionUrl'), 'node.sh')]",
