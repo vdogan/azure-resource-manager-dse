@@ -16,7 +16,7 @@ cluster_name="mycluster"
 # data_center_name
 public_ip=`curl --retry 10 icanhazip.com`
 private_ip=`echo $(hostname -I)`
-node_id=123
+node_id=$private_ip
 
 echo "Calling addNode.py with the settings:"
 echo opscenter_dns_name $opscenter_dns_name
@@ -25,7 +25,7 @@ echo data_center_size $data_center_size
 echo data_center_name $data_center_name
 echo public_ip $public_ip
 echo private_ip $private_ip
-echo node_id $private_ip
+echo node_id $node_id
 
 apt-get update
 apt-get -y install unzip python-pip
