@@ -28,7 +28,7 @@ cd install-datastax-ubuntu-lcm/bin
 ./os/install_java.sh
 ./opscenter/install.sh
 ./opscenter/start.sh
-
+sleep 1m
 ./lcm/setupCluster.py \
 --opsc-ip $public_ip \
 --clustername $cluster_name \
