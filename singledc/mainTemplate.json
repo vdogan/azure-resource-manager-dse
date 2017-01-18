@@ -81,7 +81,6 @@
       "imageReference": {
         "publisher": "Canonical",
         "offer": "UbuntuServer",
-        "version": "latest"
         "sku": "16.04.1-LTS"
       },
       "scripts": [
