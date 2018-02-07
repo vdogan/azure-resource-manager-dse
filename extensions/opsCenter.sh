@@ -13,7 +13,7 @@ echo opscpw YYYYYY
 echo dbpasswd ZZZZZZZ
 echo nodecount $nodecount
 
-cluster_name="mycluster"
+cluster_name="xpi"
 
 # repo creds
 repouser='datastax@microsoft.com'
