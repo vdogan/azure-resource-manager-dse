@@ -104,9 +104,23 @@
     },
     "baseUrl": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/DSPN/azure-resource-manager-dse/master",
+      "defaultValue": "https://raw.githubusercontent.com/vdogan/azure-resource-manager-dse/master",
       "metadata": {
         "description": "URL for nested templates and extensions"
+      }
+    },
+    "addressSpace" : {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16",
+      "metadata" : {
+        "description": "address space for vnet"
+      }
+    },
+    "subnetAddressSpace" : {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata" : {
+        "description": "address space for subnet"
       }
     }
   },
@@ -121,6 +135,8 @@
     "uniqueString": "[uniqueString(resourceGroup().id, deployment().name)]",
     "vnetName": "vnet",
     "subnetName": "subnet",
+    "vnetAddressSpace": "[parameters('addressSpace')]",
+    "snetAddressSpace": "[parameters('subnetAddressSpace')]",
     "osSettings": {
       "imageReference": {
         "publisher": "datastax",
@@ -177,14 +193,14 @@
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "10.0.0.0/16"
+            "[variables('vnetAddressSpace')]"
           ]
         },
         "subnets": [
           {
             "name": "[variables('subnetName')]",
             "properties": {
-              "addressPrefix": "10.0.0.0/24",
+              "addressPrefix": "[variables('snetAddressSpace')]",
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'netsec')]"
               }
