@@ -16,5 +16,11 @@
   },
   "OpsCPassword": {
     "value": "bar987&"
+  },
+  "addressSpace": {
+    "value": "10.32.0.0/16"
+  },
+  "subnetAddressSpace": {
+    "value": "10.32.0.0/24"
   }
 }
